@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossRun : StateMachineBehaviour
 {
     public float speed =2.5f;
-    public float atackRange = 3f;
+    public float atackRange = 13f;
     Transform player;
     Rigidbody2D rb;
     BOSSControll boss;
@@ -25,10 +25,13 @@ public class BossRun : StateMachineBehaviour
         rb.MovePosition(newPos);
 
         if(Vector2.Distance(player.position,rb.position)<= atackRange){
-            animator.SetTrigger("Attack");
+            if(boss.canAttack){
+                boss.Attack();
+                animator.SetTrigger("Attack");
+            }
         }
-
     }
+
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
