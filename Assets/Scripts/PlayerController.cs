@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public int powerupCount;
 
     void Awake() {
+        
         jumpSensor = transform.Find("jump_sensor").GetComponent<JumpSensor>();
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
@@ -84,8 +85,6 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.tag=="Powerup"){
             powerupCount++;
             Destroy(other.gameObject);
-            //play pickup effect
-
         }    
     }
 }
