@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public bool stopMovement = false;
 
     public bool isDead = false;
+    public int powerupCount;
 
     void Awake() {
         jumpSensor = transform.Find("jump_sensor").GetComponent<JumpSensor>();
@@ -77,5 +78,14 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector2 (Mathf.Sign(myRigidBody.velocity.x),1f);
         }
         
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag=="Powerup"){
+            powerupCount++;
+            Destroy(other.gameObject);
+            //play pickup effect
+
+        }    
     }
 }
