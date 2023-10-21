@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &829875606546433467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 969092500536467432}
+  m_Layer: 0
+  m_Name: GunPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &969092500536467432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829875606546433467}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.405, y: -0.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 20179411463691302}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5310935313796919254
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,6 +45,7 @@ GameObject:
   - component: {fileID: 4022711245124845636}
   - component: {fileID: 2834535700955885610}
   - component: {fileID: 7262051422621961151}
+  - component: {fileID: 257321538907558241}
   m_Layer: 0
   m_Name: Mosquito
   m_TagString: Untagged
@@ -33,7 +65,8 @@ Transform:
   m_LocalPosition: {x: 39.5, y: -2.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 969092500536467432}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3788015610375895739
@@ -193,3 +226,20 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 500
   nextWayPointDistance: 3
+--- !u!114 &257321538907558241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5310935313796919254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c217feb456b92b54186a03cb5f417e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackingObj: {fileID: 0}
+  shootDistance: 8
+  Bullet: {fileID: 8886695611909175437, guid: 4d9a02bde4695544f814c4e03ead2583, type: 3}
+  bulletPos: {fileID: 969092500536467432}
+  direction: {x: 0, y: 0}
