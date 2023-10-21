@@ -15,7 +15,7 @@ public class MK6AMPControl : MonoBehaviour
     CircleCollider2D myCircleCollider;
     PlayerController playerController;
     float speed =1f;
-
+    float flipTime = 0f;
     GameObject player;
     void Awake() {
         playerController = FindObjectOfType<PlayerController>();
@@ -25,18 +25,19 @@ public class MK6AMPControl : MonoBehaviour
         myCircleCollider = GetComponent<CircleCollider2D>();
     }
     void FixedUpdate() {
+        flipTime -= Time.deltaTime;
         RaycastHit2D hit = Physics2D.Raycast(rayPosition.position, Vector2.right, distance, LayerMask.GetMask("Doggy"));
         RaycastHit2D hit2 = Physics2D.Raycast(rayPosition.position, Vector2.left, distance, LayerMask.GetMask("Doggy"));
         if(hit.collider!=null){
-            if(player.transform.position.x<transform.position.x){
-                
+            if(transform.localPosition.x <0 && flipTime<0){
+                flipTime = 1.5f;
                 FlipEnemyFacing();
             }
             speed = fastSpeed;
         }
         else if(hit2.collider!=null){
-            if(player.transform.position.x>transform.position.x){
-
+            if(transform.localPosition.x >0 && flipTime<0){
+                flipTime = 1.5f;
                 FlipEnemyFacing();
             }
             

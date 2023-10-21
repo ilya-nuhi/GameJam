@@ -5862,12 +5862,16 @@ PrefabInstance:
       value: MK6AMP
       objectReference: {fileID: 0}
     - target: {fileID: 2652721924313530500, guid: d90d2b0e0f86c3f4cb0e4a2cd95cccb2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652721924313530500, guid: d90d2b0e0f86c3f4cb0e4a2cd95cccb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.544
+      value: 29.71
       objectReference: {fileID: 0}
     - target: {fileID: 2652721924313530500, guid: d90d2b0e0f86c3f4cb0e4a2cd95cccb2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.067
+      value: -2.08
       objectReference: {fileID: 0}
     - target: {fileID: 2652721924313530500, guid: d90d2b0e0f86c3f4cb0e4a2cd95cccb2, type: 3}
       propertyPath: m_LocalPosition.z
