@@ -7,7 +7,7 @@ using UnityEngine;
 public class MK6AMPControl : MonoBehaviour
 {
     [SerializeField] float normalSpeed = 1f;
-    [SerializeField] float fastSpeed = 2.5f;   
+    [SerializeField] float fastSpeed = 2.5f;
     [SerializeField] int damage = 20;
     [SerializeField] UnityEngine.Vector2 touchKick = new UnityEngine.Vector2(3f,13f);
     [SerializeField] float distance = 5f;
@@ -40,7 +40,7 @@ public class MK6AMPControl : MonoBehaviour
             speed = fastSpeed;
             if(canShoot){
                 direction = UnityEngine.Vector2.right;
-                StartCoroutine(Shoot(direction));
+                StartCoroutine(Shoot());
             }
         }
         else if(hit2.collider!=null){
@@ -51,7 +51,7 @@ public class MK6AMPControl : MonoBehaviour
             speed = fastSpeed;
             if(canShoot){
                 direction = UnityEngine.Vector2.left;
-                StartCoroutine(Shoot(direction));
+                StartCoroutine(Shoot());
             }
             
         }
@@ -61,7 +61,7 @@ public class MK6AMPControl : MonoBehaviour
         }
     }
 
-    IEnumerator Shoot(UnityEngine.Vector2 direction)
+    IEnumerator Shoot()
     {
         canShoot = false;
         Instantiate(mkBullet, gunPosition.position ,UnityEngine.Quaternion.identity);
@@ -75,7 +75,7 @@ public class MK6AMPControl : MonoBehaviour
 
     void Update()
     {
-        myRigidBody.velocity = new UnityEngine.Vector2 (Mathf.Sign(myRigidBody.transform.localScale.x)*speed,0f);
+        myRigidBody.velocity = new UnityEngine.Vector2 (-1*Mathf.Sign(myRigidBody.transform.localScale.x)*speed,0f);
         FlipEnemyFacingHelper();
     }
 
@@ -103,7 +103,6 @@ public class MK6AMPControl : MonoBehaviour
 
     IEnumerator DamagePlayer(GameObject myPlayer){
         playerController.stopMovement = true;
-        //animator.SetTrigger("Spiked");
         Health playerHealth = myPlayer.GetComponent<Health>();
         playerHealth.TakeDamage(damage);
         playerController.myAnimator.SetTrigger("Ouch");

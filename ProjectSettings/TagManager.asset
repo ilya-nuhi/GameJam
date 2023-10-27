@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Doggy
   - Powerup
+  - Cliff
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX
@@ -15,13 +17,13 @@ TagManager:
   - UI
   - Platform
   - Doggy
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Background
+  - Buildings
+  - Powerup
+  - CameraConfiner
+  - Enemy
+  - NextScene
+  - Ship
   - 
   - 
   - 
@@ -43,9 +45,30 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1521822563
+    locked: 0
+  - name: BGBuildings
+    uniqueID: 1263978019
+    locked: 0
   - name: Platform
     uniqueID: 2077520901
     locked: 0
+  - name: AboveRoad
+    uniqueID: 1752352565
+    locked: 0
+  - name: Building
+    uniqueID: 2060359455
+    locked: 0
+  - name: Powerup
+    uniqueID: 3081408119
+    locked: 0
+  - name: Enemy
+    uniqueID: 1548508991
+    locked: 0
   - name: Doggy
     uniqueID: 3886682067
+    locked: 0
+  - name: ship
+    uniqueID: 1776324307
     locked: 0

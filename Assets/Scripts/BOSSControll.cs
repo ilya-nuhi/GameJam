@@ -35,14 +35,16 @@ public class BOSSControll : MonoBehaviour
         StartCoroutine(startAttack());
     }
 
-    IEnumerator startAttack()
-    {
+    void Update() {
         direction = new Vector2(player.position.x-transform.position.x,player.position.y-transform.position.y);
         direction.Normalize();
+    }
+
+    IEnumerator startAttack()
+    {
         canAttack = false;
         Instantiate(bulletBoss, gunBoss[0].position, Quaternion.identity);
         Instantiate(bulletBoss, gunBoss[1].position, Quaternion.identity);
-        Instantiate(bulletBoss, gunBoss[2].position, Quaternion.identity);
         yield return new WaitForSeconds(2);
         canAttack = true;
     }

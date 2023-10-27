@@ -11,7 +11,9 @@ public class PowerupSlider : MonoBehaviour
     [SerializeField] Sprite[] Icons;
     [SerializeField] int[] toPowerUp;
     [SerializeField] Image onUseIcon;
+    [SerializeField] Animator[] animators;
     PlayerController playerController;
+
     int currentPowerup;
     bool poweringUp = false;
     [SerializeField] GameObject player;
@@ -27,7 +29,7 @@ public class PowerupSlider : MonoBehaviour
     void Start() {
         currentPowerup = 0;
         powerUpSlider.value = 0;
-        
+        Debug.Log(toPowerUp[0]);
     }
 
     void Update() {
@@ -45,6 +47,18 @@ public class PowerupSlider : MonoBehaviour
         poweringUp = true;
         playerRB.velocity = Vector3.zero;
         playerController.stopMovement = true;
+        if(currentPowerup == 0){
+            playerController.movementSpeed = 7f;
+            playerController.myAnimator = animators[0];
+        }
+        else if(currentPowerup == 1){
+            playerController.canFire = true;
+            playerController.myAnimator = animators[1];
+        }
+        else{
+            playerController.myAnimator = animators[2];
+            //canfly
+        }
         currentPowerup++;
         if(currentPowerup == toPowerUp.Count()){
             playerController.stopMovement = false;

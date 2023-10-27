@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5038650846723907962}
   - component: {fileID: 2270465307851381619}
   - component: {fileID: 2849578981720617350}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Powerup1
   m_TagString: Powerup
   m_Icon: {fileID: 0}
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1213559177
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

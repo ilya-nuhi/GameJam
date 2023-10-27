@@ -10,17 +10,21 @@ public class BulletMK6AMP : MonoBehaviour
     float bulletLifeTime = 4f;
     GameObject player;
     MK6AMPControl mK6AMPControl;
-
+    Vector2 direction;
 
     void Awake() {
         mK6AMPControl = FindObjectOfType<MK6AMPControl>();
         myRigidBody = GetComponent<Rigidbody2D>();
     }
+    void Start() {
+        direction = mK6AMPControl.direction;
+        transform.localScale = new Vector3 (mK6AMPControl.gameObject.transform.localScale.x, transform.localScale.y, transform.localScale.z);
+    }
 
     void Update()
     {
         bulletLifeTime -= Time.deltaTime;
-        myRigidBody.velocity = mK6AMPControl.direction*shootSpeed;
+        myRigidBody.velocity = direction*shootSpeed;
         if(bulletLifeTime<=0){
             Destroy(gameObject);
         }
@@ -34,5 +38,6 @@ public class BulletMK6AMP : MonoBehaviour
             playerHealth.TakeDamage(damage);
         }
         Destroy(gameObject);
+        
     }
 }

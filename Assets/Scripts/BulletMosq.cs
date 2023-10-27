@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -12,16 +13,20 @@ public class BulletMosq : MonoBehaviour
     GameObject player;
     MosquitoControl mosquitoControl;
 
-
+    UnityEngine.Vector2 direction;
     void Awake() {
         mosquitoControl = FindObjectOfType<MosquitoControl>();
         myRigidBody = GetComponent<Rigidbody2D>();
     }
 
+    void Start() {
+        direction = mosquitoControl.direction;
+        transform.localScale = new UnityEngine.Vector3 (MathF.Sign(mosquitoControl.transform.localScale.x)*transform.localScale.x,transform.localScale.y,transform.localScale.z);
+    }
     void Update()
     {
         bulletLifeTime -= Time.deltaTime;
-        myRigidBody.velocity = new UnityEngine.Vector2 (mosquitoControl.direction.x*shootSpeed, mosquitoControl.direction.y*shootSpeed);
+        myRigidBody.velocity = new UnityEngine.Vector2 (direction.x*shootSpeed, direction.y*shootSpeed);
         if(bulletLifeTime<=0){
             Destroy(gameObject);
         }
@@ -35,5 +40,6 @@ public class BulletMosq : MonoBehaviour
             playerHealth.TakeDamage(damage);
         }
         Destroy(gameObject);
+        
     }
 }

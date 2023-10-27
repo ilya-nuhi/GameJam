@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 2080880538363906110}
   - component: {fileID: 6730142957078726494}
   - component: {fileID: 1014090950354930204}
-  m_Layer: 0
+  - component: {fileID: 6824983766655868336}
+  m_Layer: 12
   m_Name: MK6AMP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 31.49, y: -1.97, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6924579861002478151}
@@ -77,11 +78,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1548508991
+  m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 622415617, guid: 9b5728d5852228c46820f1aa687eb6e0, type: 3}
-  m_Color: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0fba8d75de32dc64686d882362e14fdb, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -107,7 +108,7 @@ MonoBehaviour:
   fastSpeed: 2.5
   damage: 20
   touchKick: {x: 3, y: 13}
-  distance: 5
+  distance: 8
   rayPosition: {fileID: 6924579861002478151}
   gunPosition: {fileID: 3457702010713782045}
   mkBullet: {fileID: 8886695611909175437, guid: eb85eccc75164104eb1d17a301390572, type: 3}
@@ -171,8 +172,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.006169319, y: 0}
-  m_Size: {x: 0.5641022, y: 0.875}
+  m_Offset: {x: -0.018285275, y: 0.014567733}
+  m_Size: {x: 0.61301136, y: 2.013376}
   m_Direction: 0
 --- !u!58 &6730142957078726494
 CircleCollider2D:
@@ -206,9 +207,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.37378025, y: -0.47430497}
+  m_Offset: {x: -0.7586746, y: -1.0843568}
   serializedVersion: 2
-  m_Radius: 0.12697029
+  m_Radius: 0.16553545
 --- !u!61 &1014090950354930204
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -245,7 +246,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.6875, y: 0.875}
+    oldSize: {x: 1.175, y: 2.1625}
     newSize: {x: 0.6875, y: 0.875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -254,6 +255,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.030955046, y: 0.63269603}
   m_EdgeRadius: 0
+--- !u!114 &6824983766655868336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969235560080211144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad54eb2402ea94e4fb85d1f57d2bad21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 80
 --- !u!1 &6808305599703496184
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +277,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6924579861002478151}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RayPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3457702010713782045}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}

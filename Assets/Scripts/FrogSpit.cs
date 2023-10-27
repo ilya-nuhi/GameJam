@@ -12,11 +12,15 @@ public class FrogSpit : MonoBehaviour
     float bulletLifeTime = 4f;
 
     GameObject player;
+    PlayerController playerController;
+    void Awake() {
+        playerController = FindObjectOfType<PlayerController>();    
+    }
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
         frogControl = FindObjectOfType<FrogControl>();
-        xSpeed = frogControl.transform.localScale.x * spitSpeed;
+        xSpeed =  -1*Mathf.Sign(transform.position.x - playerController.gameObject.transform.position.x)* spitSpeed;
     }
 
     void Update()

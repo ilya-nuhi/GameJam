@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class FrogControl : MonoBehaviour
@@ -9,7 +10,6 @@ public class FrogControl : MonoBehaviour
     [SerializeField] GameObject spit;
     [SerializeField] Vector2 touchKick = new Vector2(2f,8f);
     [SerializeField] int damage = 20;
-    Animator myAnimator;
 
     GameObject player;
 
@@ -18,24 +18,34 @@ public class FrogControl : MonoBehaviour
 
     void Awake() {
         playerController = FindObjectOfType<PlayerController>();
-        myAnimator = GetComponent<Animator>();
     }
 
     void FixedUpdate() {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Mathf.Sign(transform.localScale.x)* new Vector2(1,0), distance, LayerMask.GetMask("Doggy"));
-        if(hit.collider!=null && canSpit){
-            StartCoroutine(Spit());
+        RaycastHit2D hit = Physics2D.Raycast(mouth.position, UnityEngine.Vector2.right, distance, LayerMask.GetMask("Doggy"));
+        RaycastHit2D hit2 = Physics2D.Raycast(mouth.position, UnityEngine.Vector2.left, distance, LayerMask.GetMask("Doggy"));
+        if(hit.collider!=null){
+            transform.rotation = Quaternion.Euler(0,180,0);
+            if(canSpit){
+                StartCoroutine(Spit());
+            }
+        }
+        else if(hit2.collider!=null){
+            transform.rotation = Quaternion.Euler(0,0,0);
+            if(canSpit){
+                
+                StartCoroutine(Spit());
+            }
+            
         }
 
     }
 
+    
+
     IEnumerator Spit(){
         canSpit = false;
-        myAnimator.SetTrigger("Spit");
         Instantiate(spit,mouth.position,Quaternion.identity);
-        yield return new WaitForSeconds(.2f);
-        Instantiate(spit,mouth.position,Quaternion.identity);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         canSpit = true;
     }
 
@@ -48,7 +58,6 @@ public class FrogControl : MonoBehaviour
 
     IEnumerator DamagePlayer(GameObject myPlayer){
         playerController.stopMovement = true;
-        //animator.SetTrigger("Spiked");
         Health playerHealth = myPlayer.GetComponent<Health>();
         playerHealth.TakeDamage(damage);
         playerController.myAnimator.SetTrigger("Ouch");
