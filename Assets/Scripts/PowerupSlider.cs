@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PowerupSlider : MonoBehaviour
 {
@@ -29,7 +30,6 @@ public class PowerupSlider : MonoBehaviour
     void Start() {
         currentPowerup = 0;
         powerUpSlider.value = 0;
-        Debug.Log(toPowerUp[0]);
     }
 
     void Update() {
@@ -42,8 +42,24 @@ public class PowerupSlider : MonoBehaviour
         }
     }
 
+    void OnEnable() {
+        Debug.Log("onenable called");
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        Debug.Log("foo");
+    }
+
+    void OnDisable() {
+        Debug.Log("ondisable called");
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+ 
     IEnumerator Powerup()
-    {   
+    {
+        playerController.canTakeDamage = false;
         poweringUp = true;
         playerRB.velocity = Vector3.zero;
         playerController.stopMovement = true;
@@ -69,6 +85,7 @@ public class PowerupSlider : MonoBehaviour
         playerController.powerupCount = 0;
         playerController.stopMovement = false;
         poweringUp = false;
+        playerController.canTakeDamage = true;
         //change player sprite
 
     }

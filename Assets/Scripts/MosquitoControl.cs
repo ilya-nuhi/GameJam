@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class MosquitoControl : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class MosquitoControl : MonoBehaviour
     [SerializeField] Transform bulletPos;
     [SerializeField] int damage=20;
     [SerializeField] Vector2 touchKick = new Vector2(2f,8f);
+    [SerializeField] float aiActivationDist = 15;
+    AIPath aIPath;
 
     public Vector2 direction;
 
@@ -23,10 +26,14 @@ public class MosquitoControl : MonoBehaviour
 
     void Awake() {
         playerController = FindObjectOfType<PlayerController>();
-        //myAnimator = GetComponent<Animator>();    
+        aIPath = GetComponent<AIPath>();
+        aIPath.enabled = false;
     }
 
     void Update(){
+        if(MathF.Abs(trackingObj.transform.position.x-transform.position.x)<aiActivationDist){
+            aIPath.enabled = true;
+        }
         if(trackingObj.position.x < transform.position.x && transform.localScale.x < 0 ){
             transform.localScale = new Vector3(-transform.localScale.x,transform.localScale.y,transform.localScale.z);
         }

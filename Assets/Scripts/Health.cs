@@ -8,10 +8,14 @@ public class Health : MonoBehaviour
     public int maxHealth = 100;
     Animator myAnimator;
 
-    int currentHealth;
+    PlayerController playerController;
+    public int currentHealth;
+    Singleton singleton;
 
     void Awake() {
+        singleton = GetComponent<Singleton>();
         myAnimator = GetComponent<Animator>();
+        playerController = GetComponent<PlayerController>();
         currentHealth = maxHealth;
     }
 
@@ -19,6 +23,9 @@ public class Health : MonoBehaviour
     }
 
     public void TakeDamage(int damage){
+        if(!playerController.canTakeDamage){
+            return;
+        }
         currentHealth -= damage;
         if(currentHealth<=0){
             StartCoroutine(Die());
@@ -29,12 +36,20 @@ public class Health : MonoBehaviour
         return currentHealth;
     }
 
-    IEnumerator Die(){
-        PlayerController playerController = GetComponent<PlayerController>();
+    public IEnumerator Die(){
         playerController.isDead = true;
         myAnimator.SetTrigger("isDead");
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        playerController.transform.position = singleton.respawnPoint.position;
+        currentHealth = maxHealth;
+        singleton.lives--;
+        if(singleton.lives>0){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        else{
+            singleton.OnGameOver();
+            SceneManager.LoadScene(0);
+        }
     }
 
 

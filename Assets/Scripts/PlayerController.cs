@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     bool isTouchingGround = false;
     float jumpTime = 0;
+    public bool canTakeDamage = true;
 
     void Awake() {
         
@@ -117,7 +118,7 @@ public class PlayerController : MonoBehaviour
         else if(other.gameObject.tag == "Cliff"){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        else if(other.gameObject.layer == LayerMask.GetMask("NextScene")){
+        else if(other.gameObject.layer == LayerMask.GetMask("NextLevel")){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
         }
     }
