@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,14 +13,21 @@ public class Health : MonoBehaviour
     public int currentHealth;
     Singleton singleton;
 
+    SliderControl sliderControl;
+
+    DoggyAttributes doggyAttributes;
+
     void Awake() {
-        singleton = GetComponent<Singleton>();
+        sliderControl = FindObjectOfType<SliderControl>();
+        doggyAttributes = FindObjectOfType<DoggyAttributes>();
+        singleton = FindObjectOfType<Singleton>();
         myAnimator = GetComponent<Animator>();
         playerController = GetComponent<PlayerController>();
         currentHealth = maxHealth;
     }
 
     void Start() {
+        sliderControl.AttachHealth();
     }
 
     public void TakeDamage(int damage){
@@ -39,15 +47,14 @@ public class Health : MonoBehaviour
     public IEnumerator Die(){
         playerController.isDead = true;
         myAnimator.SetTrigger("isDead");
-        yield return new WaitForSeconds(3);
-        playerController.transform.position = singleton.respawnPoint.position;
-        currentHealth = maxHealth;
-        singleton.lives--;
-        if(singleton.lives>0){
+        yield return new WaitForSeconds(2);
+        doggyAttributes.lives--;
+        if(doggyAttributes.lives>0){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         else{
             singleton.OnGameOver();
+            singleton = null;
             SceneManager.LoadScene(0);
         }
     }

@@ -16,7 +16,8 @@ public class DoggyBullet : MonoBehaviour
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
-        myRigidBody.velocity = new UnityEngine.Vector2 (playerController.transform.localScale.x , 0f);
+        myRigidBody.velocity = new UnityEngine.Vector2 (playerController.transform.localScale.x , 0f)*bulletSpeed;
+        transform.localScale = new UnityEngine.Vector3(playerController.transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
     void Update()
@@ -25,6 +26,9 @@ public class DoggyBullet : MonoBehaviour
         if(bulletLifeTime<=0){
             Destroy(gameObject);
         }
+    }
 
+    void OnTriggerEnter2D(Collider2D other) {
+        Destroy(gameObject);    
     }
 }

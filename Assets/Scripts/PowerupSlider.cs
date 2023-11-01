@@ -12,23 +12,27 @@ public class PowerupSlider : MonoBehaviour
     [SerializeField] Sprite[] Icons;
     [SerializeField] int[] toPowerUp;
     [SerializeField] Image onUseIcon;
-    [SerializeField] Animator[] animators;
     PlayerController playerController;
 
     int currentPowerup;
     bool poweringUp = false;
-    [SerializeField] GameObject player;
+    GameObject player;
     Rigidbody2D playerRB;
+    DoggyAttributes doggyAttributes;
 
     void Awake() {
+        doggyAttributes = FindObjectOfType<DoggyAttributes>();
+        player = GameObject.FindWithTag("Doggy");
         playerController = FindObjectOfType<PlayerController>();
         playerRB = player.GetComponent<Rigidbody2D>();
         powerUpSlider.maxValue = toPowerUp[0];
-        onUseIcon.sprite = Icons[0];
     }
 
     void Start() {
-        currentPowerup = 0;
+        Debug.Log(doggyAttributes.powerupCount);
+        Debug.Log(doggyAttributes.runSpeed);
+        currentPowerup = doggyAttributes.powerup;
+        onUseIcon.sprite = Icons[currentPowerup];
         powerUpSlider.value = 0;
     }
 
@@ -41,38 +45,24 @@ public class PowerupSlider : MonoBehaviour
             StartCoroutine(Powerup());
         }
     }
-
-    void OnEnable() {
-        Debug.Log("onenable called");
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        Debug.Log("foo");
-    }
-
-    void OnDisable() {
-        Debug.Log("ondisable called");
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
  
     IEnumerator Powerup()
     {
+        doggyAttributes.powerup++;
         playerController.canTakeDamage = false;
         poweringUp = true;
         playerRB.velocity = Vector3.zero;
         playerController.stopMovement = true;
         if(currentPowerup == 0){
             playerController.movementSpeed = 7f;
-            playerController.myAnimator = animators[0];
+            doggyAttributes.runSpeed = 7f;
         }
         else if(currentPowerup == 1){
             playerController.canFire = true;
-            playerController.myAnimator = animators[1];
+            doggyAttributes.canFire = true;
         }
         else{
-            playerController.myAnimator = animators[2];
+            
             //canfly
         }
         currentPowerup++;
@@ -83,10 +73,11 @@ public class PowerupSlider : MonoBehaviour
         yield return new WaitForSeconds(2);
         onUseIcon.sprite = Icons[currentPowerup];
         playerController.powerupCount = 0;
+        doggyAttributes.powerupCount = 0;
         playerController.stopMovement = false;
         poweringUp = false;
         playerController.canTakeDamage = true;
         //change player sprite
-
     }
+
 }

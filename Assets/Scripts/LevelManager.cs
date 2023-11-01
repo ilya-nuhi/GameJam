@@ -18,6 +18,5 @@ public class LevelManager : MonoBehaviour
     void ResetScene()
     {
         StartCoroutine(health.Die());
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

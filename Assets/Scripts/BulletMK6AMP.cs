@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,22 +10,22 @@ public class BulletMK6AMP : MonoBehaviour
     Rigidbody2D myRigidBody;
     float bulletLifeTime = 4f;
     GameObject player;
-    MK6AMPControl mK6AMPControl;
     Vector2 direction;
+    PlayerController playerController;
 
     void Awake() {
-        mK6AMPControl = FindObjectOfType<MK6AMPControl>();
+        playerController = FindObjectOfType<PlayerController>();
         myRigidBody = GetComponent<Rigidbody2D>();
     }
     void Start() {
-        direction = mK6AMPControl.direction;
-        transform.localScale = new Vector3 (mK6AMPControl.gameObject.transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        direction = new Vector2 (MathF.Sign(transform.position.x - playerController.transform.position.x), 0);
+        transform.localScale = new Vector3 ((direction.x)*transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
     void Update()
     {
         bulletLifeTime -= Time.deltaTime;
-        myRigidBody.velocity = direction*shootSpeed;
+        myRigidBody.velocity = -1*direction*shootSpeed;
         if(bulletLifeTime<=0){
             Destroy(gameObject);
         }

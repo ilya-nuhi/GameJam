@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton : MonoBehaviour
+public class SingletonLevel : MonoBehaviour
 {
-    public static Singleton Instance { get; private set; }
+    public static SingletonLevel Instance { get; private set; }
 
     private void Awake() 
     {
@@ -17,17 +17,16 @@ public class Singleton : MonoBehaviour
     
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 
-    public void OnGameOver(){
+    public void NextLevel(){
         Destroy(gameObject);
     }
-
 }

@@ -21,4 +21,8 @@ public class SliderControl : MonoBehaviour
     void Update() {
         healtSlider.value = playerHealth.GetHealth();
     }
+
+    public void AttachHealth(){
+        playerHealth = FindObjectOfType<Health>();
+    }
 }

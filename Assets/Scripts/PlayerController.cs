@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] float runSpeed = 5f;
+    public float movementSpeed = 5f;
     [SerializeField] float jumpSpeed = 10f;
     [SerializeField] AudioClip powerupAudio;
     [SerializeField] GameObject doggyBullet;
@@ -20,33 +20,38 @@ public class PlayerController : MonoBehaviour
 
     public Animator myAnimator;
 
-    //JumpSensor jumpSensor;
-    CapsuleCollider2D jumpSensorCollider;
-
     public bool stopMovement = false;
 
     public bool isDead = false;
     public int powerupCount;
-    public float movementSpeed;
-
-    public bool canFire = true;
+    public bool canFire = false;
     bool canTrigger = true;
 
     bool isTouchingGround = false;
     float jumpTime = 0;
     public bool canTakeDamage = true;
 
+    DoggyAttributes doggyAttributes;
+
+    Health health;
+    SingletonLevel singletonLevel;
+    Transform jumpRay;
+
     void Awake() {
-        
-        //jumpSensor = transform.Find("jump_sensor").GetComponent<JumpSensor>();
+        jumpRay = transform.Find("jumpingRay");
+        singletonLevel = FindObjectOfType<SingletonLevel>();
+        health = GetComponent<Health>();
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
-        jumpSensorCollider = GetComponent<CapsuleCollider2D>();
 
     }
     
     void Start() {
-        movementSpeed = runSpeed;
+        doggyAttributes = FindObjectOfType<DoggyAttributes>();
+        movementSpeed = doggyAttributes.runSpeed;
+        powerupCount = doggyAttributes.powerupCount;
+        power = doggyAttributes.power;
+        canFire = doggyAttributes.canFire;
     }
 
     void Update()
@@ -54,8 +59,8 @@ public class PlayerController : MonoBehaviour
         if(isDead){return;}
         Run();
         FlipSprite();
-
-        if(jumpSensorCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))){
+        RaycastHit2D hitBottom = Physics2D.Raycast(jumpRay.position, Vector2.down, Mathf.Epsilon , LayerMask.GetMask("Platform"));
+        if(hitBottom.collider!=null){
             isTouchingGround = true;
             myAnimator.SetBool("isJumping", false);
         }
@@ -112,24 +117,29 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             Destroy(other.gameObject);
             powerupCount++;
+            doggyAttributes.powerupCount++;
             AudioSource.PlayClipAtPoint(powerupAudio,transform.position);
             canTrigger = true;
         }
         else if(other.gameObject.tag == "Cliff"){
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            StartCoroutine(health.Die());
         }
         else if(other.gameObject.layer == LayerMask.GetMask("NextLevel")){
+            singletonLevel.NextLevel();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
         }
     }
 
     void OnFire(){
+        if(!canFire){return;}
         StartCoroutine(Fire());
     }
 
     IEnumerator Fire()
     {
+        canFire = false;
         Instantiate(doggyBullet, firePosition.position, Quaternion.identity);
         yield return new WaitForSeconds(0.2f);
+        canFire = true;
     }
 }
