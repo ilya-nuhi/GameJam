@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip powerupAudio;
     [SerializeField] GameObject doggyBullet;
     [SerializeField] Transform firePosition;
+    [SerializeField] RuntimeAnimatorController[] powerAnims;
     public int power = 20;
     Vector2 moveInput;
 
@@ -139,7 +140,11 @@ public class PlayerController : MonoBehaviour
     {
         canFire = false;
         Instantiate(doggyBullet, firePosition.position, Quaternion.identity);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         canFire = true;
+    }
+
+    public void ChangeAnimator(int animNum){
+        myAnimator.runtimeAnimatorController = powerAnims[animNum];
     }
 }

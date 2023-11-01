@@ -15,8 +15,10 @@ public class FrogControl : MonoBehaviour
 
     bool canSpit = true;
     PlayerController playerController;
+    EnemyHealth enemyHealth;
 
     void Awake() {
+        enemyHealth = GetComponent<EnemyHealth>();
         playerController = FindObjectOfType<PlayerController>();
     }
 
@@ -40,6 +42,11 @@ public class FrogControl : MonoBehaviour
 
     }
 
+    void Update() {
+        if(enemyHealth.stopEnemy){
+            canSpit = false;
+        }    
+    }
     
 
     IEnumerator Spit(){

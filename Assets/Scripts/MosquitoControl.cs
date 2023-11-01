@@ -19,18 +19,24 @@ public class MosquitoControl : MonoBehaviour
 
     GameObject player;
     PlayerController playerController;
+    EnemyHealth enemyHealth;
 
     //Animator myAnimator;
 
     bool canShoot = true;
 
     void Awake() {
+        enemyHealth = GetComponent<EnemyHealth>();
         playerController = FindObjectOfType<PlayerController>();
         aIPath = GetComponent<AIPath>();
         aIPath.enabled = false;
     }
 
     void Update(){
+        if(enemyHealth.stopEnemy){
+            aIPath.maxSpeed = 0;
+            canShoot = false;
+        }
         if(MathF.Abs(trackingObj.transform.position.x-transform.position.x)<aiActivationDist){
             aIPath.enabled = true;
         }

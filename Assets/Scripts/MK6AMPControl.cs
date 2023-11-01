@@ -21,9 +21,11 @@ public class MK6AMPControl : MonoBehaviour
     float speed =1f;
     GameObject player;
     bool canShoot = true;
-
     public UnityEngine.Vector2 direction;
+    
+    EnemyHealth enemyHealth;
     void Awake() {
+        enemyHealth = GetComponent<EnemyHealth>();
         playerController = FindObjectOfType<PlayerController>();
         player = playerController.gameObject;
         myRigidBody = GetComponent<Rigidbody2D>();
@@ -33,7 +35,11 @@ public class MK6AMPControl : MonoBehaviour
     void FixedUpdate() {
         RaycastHit2D hit = Physics2D.Raycast(rayPosition.position, UnityEngine.Vector2.right, distance, LayerMask.GetMask("Doggy"));
         RaycastHit2D hit2 = Physics2D.Raycast(rayPosition.position, UnityEngine.Vector2.left, distance, LayerMask.GetMask("Doggy"));
-        if(hit.collider!=null){
+        if(enemyHealth.stopEnemy){
+            speed = 0f;
+            canShoot = false;
+        }
+        else if(hit.collider!=null){
             if(myRigidBody.velocity.x < 0){
                 FlipEnemyFacing();
             }

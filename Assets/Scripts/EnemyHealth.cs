@@ -8,11 +8,13 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] int Health;
     PlayerController playerController;
 
-    Rigidbody2D myRigidbody2D;
+    public bool stopEnemy = false;
 
     void Awake() {
-        myRigidbody2D = GetComponent<Rigidbody2D>();
         playerController = FindObjectOfType<PlayerController>();    
+    }
+    void Update() {
+
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -27,7 +29,7 @@ public class EnemyHealth : MonoBehaviour
     IEnumerator DestroyEnemy()
     {
         //Destroy effect
-        myRigidbody2D.velocity = Vector2.zero;
+        stopEnemy = true;
         yield return new WaitForSeconds(3);
         Destroy(gameObject);
     }

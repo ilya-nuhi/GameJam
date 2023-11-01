@@ -7510,6 +7510,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doggy
       objectReference: {fileID: 0}
+    - target: {fileID: 5543513276402485534, guid: b7e577ef843639742915c1de5a19c985, type: 3}
+      propertyPath: myAnimator
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5543513276402485534, guid: b7e577ef843639742915c1de5a19c985, type: 3}
+      propertyPath: powerAnims.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5543513276402485534, guid: b7e577ef843639742915c1de5a19c985, type: 3}
+      propertyPath: powerAnims.Array.data[0]
+      value: 
+      objectReference: {fileID: 22100000, guid: 334f4a2d36ca22e4da410a068ac631fc, type: 2}
+    - target: {fileID: 5543513276402485534, guid: b7e577ef843639742915c1de5a19c985, type: 3}
+      propertyPath: powerAnims.Array.data[1]
+      value: 
+      objectReference: {fileID: 22100000, guid: b5cbc501768c7a342961c94aa7c74374, type: 2}
+    - target: {fileID: 5543513276402485534, guid: b7e577ef843639742915c1de5a19c985, type: 3}
+      propertyPath: powerAnims.Array.data[2]
+      value: 
+      objectReference: {fileID: 22100000, guid: c1eca2ef2e3ba3443ba19c527a0d9113, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

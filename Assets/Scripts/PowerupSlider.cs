@@ -53,6 +53,7 @@ public class PowerupSlider : MonoBehaviour
         poweringUp = true;
         playerRB.velocity = Vector3.zero;
         playerController.stopMovement = true;
+        playerController.ChangeAnimator(currentPowerup);
         if(currentPowerup == 0){
             playerController.movementSpeed = 7f;
             doggyAttributes.runSpeed = 7f;

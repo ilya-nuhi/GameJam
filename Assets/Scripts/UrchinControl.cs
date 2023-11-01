@@ -12,10 +12,11 @@ public class Enemy1Controller : MonoBehaviour
     CircleCollider2D myCircleCollider;
     PlayerController playerController;
     GameObject player;
-
     Animator animator;
+    EnemyHealth enemyHealth;
 
     void Awake() {
+        enemyHealth = GetComponent<EnemyHealth>();
         playerController = FindObjectOfType<PlayerController>();
         myRigidBody = GetComponent<Rigidbody2D>();
         myBoxCollider = GetComponent<BoxCollider2D>();
@@ -25,7 +26,13 @@ public class Enemy1Controller : MonoBehaviour
 
     void Update()
     {
-        myRigidBody.velocity = new Vector2 (-1*Mathf.Sign(myRigidBody.transform.localScale.x)*movementSpeed,0f);
+        if(enemyHealth.stopEnemy){
+            myRigidBody.velocity = Vector2.zero;
+        }
+        else{
+            myRigidBody.velocity = new Vector2 (-1*Mathf.Sign(myRigidBody.transform.localScale.x)*movementSpeed,0f);
+        }
+
         FlipEnemyFacingHelper();
     }
 
