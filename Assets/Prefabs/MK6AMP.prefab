@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad54eb2402ea94e4fb85d1f57d2bad21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 80
+  Health: 100
 --- !u!1 &6808305599703496184
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class DoggyBullet : MonoBehaviour
     {
         myRigidBody = GetComponent<Rigidbody2D>();
         myRigidBody.velocity = new UnityEngine.Vector2 (playerController.transform.localScale.x , 0f)*bulletSpeed;
-        transform.localScale = new UnityEngine.Vector3(playerController.transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        transform.localScale = new UnityEngine.Vector3(-1*playerController.transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
     void Update()

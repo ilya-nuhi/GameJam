@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8165443616701256688}
   - component: {fileID: 927073739385482201}
   - component: {fileID: -3500926199412789438}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: dog_bullet
-  m_TagString: Untagged
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

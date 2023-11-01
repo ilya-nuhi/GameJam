@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 6564932404280259066}
   - component: {fileID: 247940574725297107}
   - component: {fileID: 6732000235738831684}
+  - component: {fileID: 4944407345250617052}
   m_Layer: 12
   m_Name: Frog
   m_TagString: Untagged
@@ -220,3 +221,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4944407345250617052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973160296033399607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad54eb2402ea94e4fb85d1f57d2bad21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 80

@@ -2963,7 +2963,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 650174727}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b69e20c3e4e86af4d8f1ea8f39ff8613, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3651,7 +3651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3791769609680370042, guid: cd65350939ab7e84993ca51d15cdb042, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8200704324355654031, guid: cd65350939ab7e84993ca51d15cdb042, type: 3}
       propertyPath: powerup
@@ -4016,7 +4016,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 957417490}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b69e20c3e4e86af4d8f1ea8f39ff8613, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4681,7 +4681,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1060110993}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b69e20c3e4e86af4d8f1ea8f39ff8613, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4897,7 +4897,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1098746388}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b69e20c3e4e86af4d8f1ea8f39ff8613, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4974,11 +4974,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 110172042932628905, guid: d4c93e350fbe14d44870a6b6448f5a90, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.6
+      value: 17.81
       objectReference: {fileID: 0}
     - target: {fileID: 110172042932628905, guid: d4c93e350fbe14d44870a6b6448f5a90, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.12
+      value: -1.36
       objectReference: {fileID: 0}
     - target: {fileID: 110172042932628905, guid: d4c93e350fbe14d44870a6b6448f5a90, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5477,7 +5477,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1178107940}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b69e20c3e4e86af4d8f1ea8f39ff8613, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6847,11 +6847,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8274905807052614777, guid: e5eb0107092e3dd4092d95c10f21adc9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.97
+      value: 12.67
       objectReference: {fileID: 0}
     - target: {fileID: 8274905807052614777, guid: e5eb0107092e3dd4092d95c10f21adc9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.24
+      value: -1.19
       objectReference: {fileID: 0}
     - target: {fileID: 8274905807052614777, guid: e5eb0107092e3dd4092d95c10f21adc9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9322,11 +9322,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 110172042932628905, guid: d4c93e350fbe14d44870a6b6448f5a90, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.33
+      value: 7.4
       objectReference: {fileID: 0}
     - target: {fileID: 110172042932628905, guid: d4c93e350fbe14d44870a6b6448f5a90, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.26
+      value: -1.4
       objectReference: {fileID: 0}
     - target: {fileID: 110172042932628905, guid: d4c93e350fbe14d44870a6b6448f5a90, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9803,6 +9803,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 2019960368}
   - {fileID: 422987536}
+  - {fileID: 880985026}
   - {fileID: 2100045306}
   - {fileID: 2105053498}
   - {fileID: 1040384502}
@@ -9818,4 +9819,3 @@ SceneRoots:
   - {fileID: 1757733694}
   - {fileID: 1005673494}
   - {fileID: 136476845}
-  - {fileID: 880985026}
