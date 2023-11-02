@@ -6,13 +6,13 @@ using Pathfinding;
 
 public class MosquitoControl : MonoBehaviour
 {
-    [SerializeField] Transform trackingObj;
     [SerializeField] float shootDistance;
     [SerializeField] GameObject Bullet;
     [SerializeField] Transform bulletPos;
     [SerializeField] int damage=20;
     [SerializeField] Vector2 touchKick = new Vector2(2f,8f);
     [SerializeField] float aiActivationDist = 15;
+    Transform trackingObj;
     AIPath aIPath;
 
     public Vector2 direction;
@@ -21,18 +21,21 @@ public class MosquitoControl : MonoBehaviour
     PlayerController playerController;
     EnemyHealth enemyHealth;
 
-    //Animator myAnimator;
-
     bool canShoot = true;
 
     void Awake() {
         enemyHealth = GetComponent<EnemyHealth>();
-        playerController = FindObjectOfType<PlayerController>();
         aIPath = GetComponent<AIPath>();
         aIPath.enabled = false;
     }
 
+    void Start() {
+        playerController = FindObjectOfType<PlayerController>();
+        trackingObj = GameObject.Find("Doggy").transform;
+    }
+
     void Update(){
+        if(trackingObj==null){return;}
         if(enemyHealth.stopEnemy){
             aIPath.maxSpeed = 0;
             canShoot = false;

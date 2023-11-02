@@ -14,12 +14,17 @@ public class FrogControl : MonoBehaviour
     GameObject player;
 
     bool canSpit = true;
-    PlayerController playerController;
     EnemyHealth enemyHealth;
+    PlayerController playerController;
+
 
     void Awake() {
         enemyHealth = GetComponent<EnemyHealth>();
-        playerController = FindObjectOfType<PlayerController>();
+    }
+    void Start() {
+        Debug.Log("yeni player");
+        player = GameObject.Find("Doggy");
+        playerController = player.GetComponent<PlayerController>();
     }
 
     void FixedUpdate() {
@@ -34,15 +39,18 @@ public class FrogControl : MonoBehaviour
         else if(hit2.collider!=null){
             transform.rotation = Quaternion.Euler(0,0,0);
             if(canSpit){
-                
                 StartCoroutine(Spit());
             }
-            
         }
-
     }
 
     void Update() {
+        if(playerController==null){
+            Debug.Log("null");
+        }
+        else{
+            Debug.Log("null değil");
+        }
         if(enemyHealth.stopEnemy){
             canSpit = false;
         }    
@@ -58,18 +66,17 @@ public class FrogControl : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("Doggy")){
-            player = other.gameObject;
-            StartCoroutine(DamagePlayer(player));
+            StartCoroutine(DamagePlayer());
         }
     }
 
-    IEnumerator DamagePlayer(GameObject myPlayer){
+    IEnumerator DamagePlayer(){
         playerController.stopMovement = true;
-        Health playerHealth = myPlayer.GetComponent<Health>();
+        Health playerHealth = player.GetComponent<Health>();
         playerHealth.TakeDamage(damage);
         playerController.myAnimator.SetTrigger("Ouch");
-        Rigidbody2D playerRB = myPlayer.GetComponent<Rigidbody2D>();
-        if(myPlayer.transform.position.x<=transform.position.x){
+        Rigidbody2D playerRB = player.GetComponent<Rigidbody2D>();
+        if(player.transform.position.x<=transform.position.x){
             playerRB.velocity = new Vector2(-touchKick.x,touchKick.y);
         }
         else{

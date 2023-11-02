@@ -15,13 +15,15 @@ public class Enemy1Controller : MonoBehaviour
     Animator animator;
     EnemyHealth enemyHealth;
 
-    void Awake() {
+    void Awake() {   
         enemyHealth = GetComponent<EnemyHealth>();
-        playerController = FindObjectOfType<PlayerController>();
         myRigidBody = GetComponent<Rigidbody2D>();
         myBoxCollider = GetComponent<BoxCollider2D>();
         myCircleCollider = GetComponent<CircleCollider2D>();
         animator = GetComponent<Animator>();
+    }
+    void Start() {
+        playerController = FindObjectOfType<PlayerController>();    
     }
 
     void Update()

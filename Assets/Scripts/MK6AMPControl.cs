@@ -26,11 +26,14 @@ public class MK6AMPControl : MonoBehaviour
     EnemyHealth enemyHealth;
     void Awake() {
         enemyHealth = GetComponent<EnemyHealth>();
-        playerController = FindObjectOfType<PlayerController>();
-        player = playerController.gameObject;
         myRigidBody = GetComponent<Rigidbody2D>();
         myBoxCollider = GetComponent<BoxCollider2D>();
         myCircleCollider = GetComponent<CircleCollider2D>();
+    }
+
+    void Start() {
+        playerController = FindObjectOfType<PlayerController>();
+        player = playerController.gameObject;  
     }
     void FixedUpdate() {
         RaycastHit2D hit = Physics2D.Raycast(rayPosition.position, UnityEngine.Vector2.right, distance, LayerMask.GetMask("Doggy"));

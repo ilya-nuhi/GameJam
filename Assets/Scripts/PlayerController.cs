@@ -26,14 +26,13 @@ public class PlayerController : MonoBehaviour
     public bool isDead = false;
     public int powerupCount;
     public bool canFire = false;
+    public bool canFly = false;
+    bool canFlap = false;
     bool canTrigger = true;
-
     bool isTouchingGround = false;
     float jumpTime = 0;
     public bool canTakeDamage = true;
-
     DoggyAttributes doggyAttributes;
-
     Health health;
     SingletonLevel singletonLevel;
     Transform jumpRay;
@@ -43,16 +42,16 @@ public class PlayerController : MonoBehaviour
         singletonLevel = FindObjectOfType<SingletonLevel>();
         health = GetComponent<Health>();
         myRigidBody = GetComponent<Rigidbody2D>();
-        myAnimator = GetComponent<Animator>();
-
     }
     
     void Start() {
         doggyAttributes = FindObjectOfType<DoggyAttributes>();
+        myAnimator = GetComponent<Animator>();
         movementSpeed = doggyAttributes.runSpeed;
         powerupCount = doggyAttributes.powerupCount;
         power = doggyAttributes.power;
         canFire = doggyAttributes.canFire;
+        canFly = doggyAttributes.canFly;
     }
 
     void Update()
@@ -63,6 +62,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hitBottom = Physics2D.Raycast(jumpRay.position, Vector2.down, Mathf.Epsilon , LayerMask.GetMask("Platform"));
         if(hitBottom.collider!=null){
             isTouchingGround = true;
+            canFlap = true;
             myAnimator.SetBool("isJumping", false);
         }
         else{
@@ -81,6 +81,11 @@ public class PlayerController : MonoBehaviour
         if(canJump()){
             myRigidBody.velocity += new Vector2 (0f,jumpSpeed);
             jumpTime = 0.2f;
+        }
+        else if(canFly && canFlap){
+            canFlap = false;
+            myRigidBody.velocity = new Vector2 (myRigidBody.velocity.x,0f);
+            myRigidBody.velocity += new Vector2 (0f,jumpSpeed);
         }
     }
 

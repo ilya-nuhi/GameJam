@@ -109,8 +109,12 @@ MonoBehaviour:
   powerupAudio: {fileID: 8300000, guid: b9127ac4054b62c479aa68aa898e2ba7, type: 3}
   doggyBullet: {fileID: 7965073596992593853, guid: 4566c6012d46c774da89f425a09a1134, type: 3}
   firePosition: {fileID: 9076295717238290174}
+  powerAnims:
+  - {fileID: 22100000, guid: 334f4a2d36ca22e4da410a068ac631fc, type: 2}
+  - {fileID: 22100000, guid: b5cbc501768c7a342961c94aa7c74374, type: 2}
+  - {fileID: 22100000, guid: c1eca2ef2e3ba3443ba19c527a0d9113, type: 2}
   power: 20
-  myAnimator: {fileID: 7184323674689538988}
+  myAnimator: {fileID: 0}
   stopMovement: 0
   isDead: 0
   powerupCount: 0

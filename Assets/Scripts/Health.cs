@@ -48,6 +48,7 @@ public class Health : MonoBehaviour
         playerController.isDead = true;
         myAnimator.SetTrigger("isDead");
         yield return new WaitForSeconds(2);
+        Destroy(playerController.gameObject);
         doggyAttributes.lives--;
         if(doggyAttributes.lives>0){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

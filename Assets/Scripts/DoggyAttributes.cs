@@ -10,4 +10,5 @@ public class DoggyAttributes : MonoBehaviour
     public int power = 20;
     public int powerupCount = 0;
     public bool canFire = false;
+    public bool canFly = false;
 }

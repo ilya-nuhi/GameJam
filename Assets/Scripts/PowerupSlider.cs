@@ -29,8 +29,6 @@ public class PowerupSlider : MonoBehaviour
     }
 
     void Start() {
-        Debug.Log(doggyAttributes.powerupCount);
-        Debug.Log(doggyAttributes.runSpeed);
         currentPowerup = doggyAttributes.powerup;
         onUseIcon.sprite = Icons[currentPowerup];
         powerUpSlider.value = 0;
@@ -63,14 +61,13 @@ public class PowerupSlider : MonoBehaviour
             doggyAttributes.canFire = true;
         }
         else{
-            
-            //canfly
+            playerController.canFly = true;
+            doggyAttributes.canFly = true;
         }
         currentPowerup++;
         if(currentPowerup == toPowerUp.Count()){
             playerController.stopMovement = false;
         }
-        //animate player
         yield return new WaitForSeconds(2);
         onUseIcon.sprite = Icons[currentPowerup];
         playerController.powerupCount = 0;
@@ -78,7 +75,6 @@ public class PowerupSlider : MonoBehaviour
         playerController.stopMovement = false;
         poweringUp = false;
         playerController.canTakeDamage = true;
-        //change player sprite
     }
 
 }

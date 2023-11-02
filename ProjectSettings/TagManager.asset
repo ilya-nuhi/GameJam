@@ -55,11 +55,11 @@ TagManager:
   - name: Platform
     uniqueID: 2077520901
     locked: 0
-  - name: AboveRoad
-    uniqueID: 1752352565
-    locked: 0
   - name: Building
     uniqueID: 2060359455
+    locked: 0
+  - name: AboveRoad
+    uniqueID: 1752352565
     locked: 0
   - name: Powerup
     uniqueID: 3081408119

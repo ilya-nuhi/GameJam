@@ -6,7 +6,6 @@ using UnityEngine;
 public class DoggyBullet : MonoBehaviour
 {
     [SerializeField] float bulletSpeed = 10f;
-    [SerializeField] int damage = 20;
     Rigidbody2D myRigidBody;
     float bulletLifeTime = 4f;
     PlayerController playerController;
