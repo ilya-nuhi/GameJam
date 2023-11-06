@@ -171,12 +171,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c217feb456b92b54186a03cb5f417e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackingObj: {fileID: 0}
   shootDistance: 8
-  Bullet: {fileID: 8886695611909175437, guid: 4d9a02bde4695544f814c4e03ead2583, type: 3}
+  Bullet: {fileID: 2918412115673393037, guid: 4d9a02bde4695544f814c4e03ead2583, type: 3}
   bulletPos: {fileID: 969092500536467432}
   damage: 20
   touchKick: {x: 4, y: 10}
+  aiActivationDist: 15
   direction: {x: 0, y: 0}
 --- !u!114 &2708807691254329511
 MonoBehaviour:
@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 60
+  stopEnemy: 0
 --- !u!114 &3768497874898286884
 MonoBehaviour:
   m_ObjectHideFlags: 0

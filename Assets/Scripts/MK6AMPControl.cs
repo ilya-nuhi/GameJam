@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MK6AMPControl : MonoBehaviour
 {
@@ -29,11 +30,14 @@ public class MK6AMPControl : MonoBehaviour
         myRigidBody = GetComponent<Rigidbody2D>();
         myBoxCollider = GetComponent<BoxCollider2D>();
         myCircleCollider = GetComponent<CircleCollider2D>();
+        SceneManager.activeSceneChanged+=OnSceneChanged;
+        playerController = FindObjectOfType<PlayerController>();
     }
 
-    void Start() {
+    void OnSceneChanged(Scene arg0, Scene arg1)
+    {
         playerController = FindObjectOfType<PlayerController>();
-        player = playerController.gameObject;  
+        player = GameObject.Find("Doggy");
     }
     void FixedUpdate() {
         RaycastHit2D hit = Physics2D.Raycast(rayPosition.position, UnityEngine.Vector2.right, distance, LayerMask.GetMask("Doggy"));

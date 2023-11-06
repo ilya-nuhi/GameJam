@@ -3,20 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.SceneManagement;
 
 public class MosquitoControl : MonoBehaviour
 {
     [SerializeField] float shootDistance;
-    [SerializeField] GameObject Bullet;
+    [SerializeField] BulletMosq Bullet;
     [SerializeField] Transform bulletPos;
     [SerializeField] int damage=20;
     [SerializeField] Vector2 touchKick = new Vector2(2f,8f);
     [SerializeField] float aiActivationDist = 15;
     Transform trackingObj;
     AIPath aIPath;
-
-    public Vector2 direction;
-
+    AIDestinationSetter aIDestinationSetter;
     GameObject player;
     PlayerController playerController;
     EnemyHealth enemyHealth;
@@ -24,6 +23,7 @@ public class MosquitoControl : MonoBehaviour
     bool canShoot = true;
 
     void Awake() {
+        aIDestinationSetter = GetComponent<AIDestinationSetter>();
         enemyHealth = GetComponent<EnemyHealth>();
         aIPath = GetComponent<AIPath>();
         aIPath.enabled = false;
@@ -32,9 +32,23 @@ public class MosquitoControl : MonoBehaviour
     void Start() {
         playerController = FindObjectOfType<PlayerController>();
         trackingObj = GameObject.Find("Doggy").transform;
+        SceneManager.activeSceneChanged+=OnSceneChanged;
+    }
+
+    void OnSceneChanged(Scene arg0, Scene arg1)
+    {
+        playerController = FindObjectOfType<PlayerController>();
+        trackingObj = GameObject.Find("Doggy").transform;
+        aIDestinationSetter.target = trackingObj;
     }
 
     void Update(){
+        if(playerController==null){
+            Debug.Log("null");
+        }
+        else{
+            Debug.Log("null değil");
+        }
         if(trackingObj==null){return;}
         if(enemyHealth.stopEnemy){
             aIPath.maxSpeed = 0;
@@ -55,14 +69,21 @@ public class MosquitoControl : MonoBehaviour
         }
     }
 
+    // AB = |B-A|
+
     IEnumerator Shoot()
     {
-        direction = new Vector2(trackingObj.position.x-transform.position.x,trackingObj.position.y-transform.position.y);
+        
+        Vector2 direction = new Vector2(trackingObj.position.x-transform.position.x, trackingObj.position.y-transform.position.y);
         direction.Normalize();
         canShoot = false;
-        Instantiate(Bullet,bulletPos.position, Quaternion.Euler(0,0,MathF.Atan(direction.y/direction.x)*Mathf.Rad2Deg));
+        var bulletTransform = Instantiate(Bullet);
+        bulletTransform.transform.position = bulletPos.position;
+        bulletTransform.transform.right = -direction;
         yield return new WaitForSeconds(.2f);
-        Instantiate(Bullet,bulletPos.position, Quaternion.Euler(0,0,MathF.Atan(direction.y/direction.x)*Mathf.Rad2Deg));
+        bulletTransform = Instantiate(Bullet);
+        bulletTransform.transform.position = bulletPos.position;
+        bulletTransform.transform.right = -direction;
         yield return new WaitForSeconds(1);
         canShoot = true;
     }
@@ -76,7 +97,6 @@ public class MosquitoControl : MonoBehaviour
 
     IEnumerator DamagePlayer(GameObject myPlayer){
         playerController.stopMovement = true;
-        //animator.SetTrigger("Spiked");
         Health playerHealth = myPlayer.GetComponent<Health>();
         playerHealth.TakeDamage(damage);
         playerController.myAnimator.SetTrigger("Ouch");

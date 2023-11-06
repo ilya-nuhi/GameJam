@@ -26,7 +26,7 @@ public class SingletonLevel : MonoBehaviour
         }
     }
 
-    public void NextLevel(){
+    public void DestroyLevel(){
         Destroy(gameObject);
     }
 }

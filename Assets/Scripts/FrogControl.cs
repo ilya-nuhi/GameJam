@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FrogControl : MonoBehaviour
 {
@@ -22,11 +23,16 @@ public class FrogControl : MonoBehaviour
         enemyHealth = GetComponent<EnemyHealth>();
     }
     void Start() {
-        Debug.Log("yeni player");
         player = GameObject.Find("Doggy");
         playerController = player.GetComponent<PlayerController>();
+        SceneManager.activeSceneChanged+=OnSceneChanged;
     }
 
+    void OnSceneChanged(Scene arg0, Scene arg1)
+    {
+        playerController = FindObjectOfType<PlayerController>();
+        player = GameObject.Find("Doggy");
+    }
     void FixedUpdate() {
         RaycastHit2D hit = Physics2D.Raycast(mouth.position, UnityEngine.Vector2.right, distance, LayerMask.GetMask("Doggy"));
         RaycastHit2D hit2 = Physics2D.Raycast(mouth.position, UnityEngine.Vector2.left, distance, LayerMask.GetMask("Doggy"));
@@ -45,12 +51,6 @@ public class FrogControl : MonoBehaviour
     }
 
     void Update() {
-        if(playerController==null){
-            Debug.Log("null");
-        }
-        else{
-            Debug.Log("null değil");
-        }
         if(enemyHealth.stopEnemy){
             canSpit = false;
         }    

@@ -51,12 +51,13 @@ public class PowerupSlider : MonoBehaviour
         poweringUp = true;
         playerRB.velocity = Vector3.zero;
         playerController.stopMovement = true;
+        currentPowerup++;
         playerController.ChangeAnimator(currentPowerup);
-        if(currentPowerup == 0){
+        if(currentPowerup == 1){
             playerController.movementSpeed = 7f;
             doggyAttributes.runSpeed = 7f;
         }
-        else if(currentPowerup == 1){
+        else if(currentPowerup == 2){
             playerController.canFire = true;
             doggyAttributes.canFire = true;
         }
@@ -64,7 +65,6 @@ public class PowerupSlider : MonoBehaviour
             playerController.canFly = true;
             doggyAttributes.canFly = true;
         }
-        currentPowerup++;
         if(currentPowerup == toPowerUp.Count()){
             playerController.stopMovement = false;
         }

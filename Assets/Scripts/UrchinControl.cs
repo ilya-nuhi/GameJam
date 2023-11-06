@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy1Controller : MonoBehaviour
 {
@@ -21,9 +22,14 @@ public class Enemy1Controller : MonoBehaviour
         myBoxCollider = GetComponent<BoxCollider2D>();
         myCircleCollider = GetComponent<CircleCollider2D>();
         animator = GetComponent<Animator>();
+        SceneManager.activeSceneChanged+=OnSceneChanged;
+        playerController = FindObjectOfType<PlayerController>();
     }
-    void Start() {
-        playerController = FindObjectOfType<PlayerController>();    
+
+    void OnSceneChanged(Scene arg0, Scene arg1)
+    {
+        playerController = FindObjectOfType<PlayerController>();
+        player = GameObject.Find("Doggy");
     }
 
     void Update()

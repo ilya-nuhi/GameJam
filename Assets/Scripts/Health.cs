@@ -12,12 +12,14 @@ public class Health : MonoBehaviour
     PlayerController playerController;
     public int currentHealth;
     Singleton singleton;
+    SingletonLevel singletonLevel;
 
     SliderControl sliderControl;
 
     DoggyAttributes doggyAttributes;
 
     void Awake() {
+        singletonLevel = FindObjectOfType<SingletonLevel>();
         sliderControl = FindObjectOfType<SliderControl>();
         doggyAttributes = FindObjectOfType<DoggyAttributes>();
         singleton = FindObjectOfType<Singleton>();
@@ -55,6 +57,7 @@ public class Health : MonoBehaviour
         }
         else{
             singleton.OnGameOver();
+            singletonLevel.DestroyLevel();
             singleton = null;
             SceneManager.LoadScene(0);
         }

@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     void Start() {
         doggyAttributes = FindObjectOfType<DoggyAttributes>();
         myAnimator = GetComponent<Animator>();
+        ChangeAnimator(doggyAttributes.powerup);
         movementSpeed = doggyAttributes.runSpeed;
         powerupCount = doggyAttributes.powerupCount;
         power = doggyAttributes.power;
@@ -131,7 +132,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(health.Die());
         }
         else if(other.gameObject.layer == LayerMask.GetMask("NextLevel")){
-            singletonLevel.NextLevel();
+            singletonLevel.DestroyLevel();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
         }
     }

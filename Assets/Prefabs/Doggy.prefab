@@ -110,6 +110,7 @@ MonoBehaviour:
   doggyBullet: {fileID: 7965073596992593853, guid: 4566c6012d46c774da89f425a09a1134, type: 3}
   firePosition: {fileID: 9076295717238290174}
   powerAnims:
+  - {fileID: 9100000, guid: 481556931e1284e40bd7f6da3593176f, type: 2}
   - {fileID: 22100000, guid: 334f4a2d36ca22e4da410a068ac631fc, type: 2}
   - {fileID: 22100000, guid: b5cbc501768c7a342961c94aa7c74374, type: 2}
   - {fileID: 22100000, guid: c1eca2ef2e3ba3443ba19c527a0d9113, type: 2}
@@ -119,6 +120,7 @@ MonoBehaviour:
   isDead: 0
   powerupCount: 0
   canFire: 0
+  canFly: 0
   canTakeDamage: 1
 --- !u!95 &7184323674689538988
 Animator:

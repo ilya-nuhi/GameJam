@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -13,6 +14,15 @@ public class EnemyHealth : MonoBehaviour
     void Awake() {
         playerController = FindObjectOfType<PlayerController>();    
     }
+    void Start() {
+        SceneManager.activeSceneChanged += OnSceneLoad;
+    }
+
+    void OnSceneLoad(Scene arg0, Scene arg1)
+    {
+        playerController = FindObjectOfType<PlayerController>();
+    }
+
     void Update() {
 
     }
