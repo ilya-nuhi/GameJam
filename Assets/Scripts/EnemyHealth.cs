@@ -28,6 +28,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
+        if(!isActiveAndEnabled){return;}
         if(other.tag=="PlayerBullet"){
             Health -= playerController.power;
             if(Health<=0){

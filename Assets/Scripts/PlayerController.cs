@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -45,10 +46,6 @@ public class PlayerController : MonoBehaviour
     }
     
     void Start() {
-        int deneme = FindObjectsByType<DoggyAttributes>(FindObjectsSortMode.None).Length;
-        int deneme2 = FindObjectsByType<Singleton>(FindObjectsSortMode.None).Length;
-        Debug.Log(deneme);
-        Debug.Log(deneme2);
         doggyAttributes = FindObjectOfType<DoggyAttributes>();
         myAnimator = GetComponent<Animator>();
         ChangeAnimator(doggyAttributes.powerup);
@@ -136,8 +133,11 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(health.Die());
         }
         else if(other.gameObject.layer == LayerMask.GetMask("NextLevel")){
-            singletonLevel.DestroyLevel();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+            // if all the powerups are collected we can pass to the next level.
+            if(doggyAttributes.powerup > SceneManager.GetActiveScene().buildIndex){
+                singletonLevel.DestroyLevel();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+            }
         }
     }
 

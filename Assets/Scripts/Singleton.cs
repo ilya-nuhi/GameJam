@@ -9,15 +9,14 @@ public class Singleton : MonoBehaviour
     private void Awake() 
     {
         ManageSingleton();
-
     }
 
     void ManageSingleton(){
     // If there is an instance, and it's not me, delete myself.
     
-        if (Instance != null && Instance != this)
+        if (Instance != null)
         {
-            Debug.Log("did work");
+            gameObject.SetActive(false);
             Destroy(gameObject);
         }
         else

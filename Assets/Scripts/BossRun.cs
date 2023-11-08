@@ -19,7 +19,6 @@ public class BossRun : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         boss.LookAtPlayer();
-
         Vector2 target = new Vector2(player.position.x,rb.position.y);
         Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed*Time.fixedDeltaTime);
         rb.MovePosition(newPos);
@@ -27,7 +26,6 @@ public class BossRun : StateMachineBehaviour
         if(Vector2.Distance(player.position,rb.position)<= atackRange){
             if(boss.canAttack){
                 boss.Attack();
-                animator.SetTrigger("Attack");
             }
         }
     }
@@ -35,7 +33,7 @@ public class BossRun : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       animator.ResetTrigger("Attack");
+        
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

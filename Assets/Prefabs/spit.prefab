@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6902737482063394237}
   - component: {fileID: -3323567660443716063}
   - component: {fileID: 3498613764427050722}
-  m_Layer: 12
+  m_Layer: 16
   m_Name: spit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,6 +9,7 @@ TagManager:
   - Cliff
   - PlayerBullet
   - NextLevel
+  - BossBullet
   layers:
   - Default
   - TransparentFX
@@ -26,8 +27,8 @@ TagManager:
   - NextScene
   - Ship
   - DoggyBullet
-  - 
-  - 
+  - EnemyBullet
+  - BossBullet
   - 
   - 
   - 

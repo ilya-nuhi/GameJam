@@ -182,8 +182,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.94677997, y: -0.022060752}
-  m_Size: {x: 2.4822793, y: 3.6549428}
+  m_Offset: {x: -0.9525547, y: -0.022060752}
+  m_Size: {x: 2.4707298, y: 3.6549428}
   m_Direction: 0
 --- !u!95 &2007954416272538745
 Animator:
@@ -219,10 +219,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  bulletBoss: {fileID: 7877953931715174111, guid: f9e91d6df306656439390fbfb2c5a5dd, type: 3}
+  bulletBoss: {fileID: 7187269498536363573, guid: 0d509607e186e7a4793f4fbdadfb985d, type: 3}
   gunBoss:
   - {fileID: 4423669683577057038}
   - {fileID: 7008881023252734238}
+  touchKick: {x: 3, y: 13}
+  damage: 20
   canAttack: 1
   isFlipped: 0
   direction: {x: 0, y: 0}
