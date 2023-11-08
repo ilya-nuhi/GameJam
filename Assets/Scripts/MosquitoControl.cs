@@ -43,12 +43,6 @@ public class MosquitoControl : MonoBehaviour
     }
 
     void Update(){
-        if(playerController==null){
-            Debug.Log("null");
-        }
-        else{
-            Debug.Log("null değil");
-        }
         if(trackingObj==null){return;}
         if(enemyHealth.stopEnemy){
             aIPath.maxSpeed = 0;

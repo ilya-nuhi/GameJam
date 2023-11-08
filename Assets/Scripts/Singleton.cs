@@ -17,6 +17,7 @@ public class Singleton : MonoBehaviour
     
         if (Instance != null && Instance != this)
         {
+            Debug.Log("did work");
             Destroy(gameObject);
         }
         else

@@ -45,6 +45,10 @@ public class PlayerController : MonoBehaviour
     }
     
     void Start() {
+        int deneme = FindObjectsByType<DoggyAttributes>(FindObjectsSortMode.None).Length;
+        int deneme2 = FindObjectsByType<Singleton>(FindObjectsSortMode.None).Length;
+        Debug.Log(deneme);
+        Debug.Log(deneme2);
         doggyAttributes = FindObjectOfType<DoggyAttributes>();
         myAnimator = GetComponent<Animator>();
         ChangeAnimator(doggyAttributes.powerup);
