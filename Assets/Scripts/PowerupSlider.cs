@@ -13,6 +13,7 @@ public class PowerupSlider : MonoBehaviour
     [SerializeField] int[] toPowerUp;
     [SerializeField] Image onUseIcon;
     PlayerController playerController;
+    AudioSource audioSource;
 
     int currentPowerup;
     bool poweringUp = false;
@@ -21,6 +22,7 @@ public class PowerupSlider : MonoBehaviour
     DoggyAttributes doggyAttributes;
 
     void Awake() {
+        audioSource = GetComponent<AudioSource>();
         doggyAttributes = FindObjectOfType<DoggyAttributes>();
         player = GameObject.FindWithTag("Doggy");
         playerController = FindObjectOfType<PlayerController>();
@@ -46,9 +48,11 @@ public class PowerupSlider : MonoBehaviour
  
     IEnumerator Powerup()
     {
-        doggyAttributes.powerup++;
+        Debug.Log("girdi");
+        audioSource.Play();
         playerController.canTakeDamage = false;
         poweringUp = true;
+        doggyAttributes.powerup++;
         playerRB.velocity = Vector3.zero;
         playerController.stopMovement = true;
         currentPowerup++;
@@ -68,10 +72,10 @@ public class PowerupSlider : MonoBehaviour
         if(currentPowerup == toPowerUp.Count()){
             playerController.stopMovement = false;
         }
-        yield return new WaitForSeconds(2);
-        onUseIcon.sprite = Icons[currentPowerup];
         playerController.powerupCount = 0;
         doggyAttributes.powerupCount = 0;
+        yield return new WaitForSeconds(2);
+        onUseIcon.sprite = Icons[currentPowerup];
         playerController.stopMovement = false;
         poweringUp = false;
         playerController.canTakeDamage = true;

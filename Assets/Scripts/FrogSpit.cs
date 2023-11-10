@@ -6,9 +6,9 @@ public class FrogSpit : MonoBehaviour
 {
     [SerializeField] float spitSpeed = 10f;
     [SerializeField] int damage = 20;
+    [SerializeField] AudioClip spittingSoundFX;
     Rigidbody2D myRigidBody;
     float xSpeed;
-    FrogControl frogControl;
     float bulletLifeTime = 4f;
 
     GameObject player;
@@ -18,8 +18,8 @@ public class FrogSpit : MonoBehaviour
     }
     void Start()
     {
+        AudioSource.PlayClipAtPoint(spittingSoundFX,transform.position);
         myRigidBody = GetComponent<Rigidbody2D>();
-        frogControl = FindObjectOfType<FrogControl>();
         xSpeed =  -1*Mathf.Sign(transform.position.x - playerController.gameObject.transform.position.x)* spitSpeed;
     }
 

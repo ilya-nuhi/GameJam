@@ -5,20 +5,22 @@ using UnityEngine;
 
 public class BossBullet : MonoBehaviour
 {
-    [SerializeField] float shootSpeed = 10f;
+    [SerializeField] float shootSpeed = 5f;
     [SerializeField] int damage = 20;
 
     [SerializeField] float rotationSpeed = 200f;
+    [SerializeField] AudioClip bossBullet;
     Rigidbody2D myRigidBody;
     float bulletLifeTime = 4f;
     GameObject player;
-    BOSSControll bOSSControll;
+
+    AudioSource audioSource;
 
     int flip=1;
 
     void Awake() {
+        AudioSource.PlayClipAtPoint(bossBullet,transform.position);
         player = GameObject.Find("Doggy");
-        bOSSControll = FindObjectOfType<BOSSControll>();
         myRigidBody = GetComponent<Rigidbody2D>();
     }
 
@@ -39,7 +41,7 @@ public class BossBullet : MonoBehaviour
         UnityEngine.Vector3 crossProduct = UnityEngine.Vector3.Cross(targetDirection, bulletDirection);
 
         myRigidBody.angularVelocity = -crossProduct.z*rotationSpeed;
-        myRigidBody.velocity = bulletDirection*5;
+        myRigidBody.velocity = bulletDirection*shootSpeed;
         bulletLifeTime -= Time.deltaTime;
         if(bulletLifeTime<=0){
             Destroy(gameObject);

@@ -114,6 +114,8 @@ MonoBehaviour:
   - {fileID: 22100000, guid: 334f4a2d36ca22e4da410a068ac631fc, type: 2}
   - {fileID: 22100000, guid: b5cbc501768c7a342961c94aa7c74374, type: 2}
   - {fileID: 22100000, guid: c1eca2ef2e3ba3443ba19c527a0d9113, type: 2}
+  detectRadius: 10
+  barkingSFX: {fileID: 8300000, guid: 9b3ecef2cdafa144fa31151f97f3b970, type: 3}
   power: 20
   myAnimator: {fileID: 0}
   stopMovement: 0
@@ -212,6 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3915648ea6a8654d94920a54e6cb463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dyingSFX: {fileID: 8300000, guid: f895aa9f8a551b54194b42f4e3665be9, type: 3}
+  takeDamageSFX: {fileID: 8300000, guid: 3b0f141497fca1644aa75ca50048f179, type: 3}
   maxHealth: 100
   currentHealth: 0
 --- !u!70 &9107344242527213361

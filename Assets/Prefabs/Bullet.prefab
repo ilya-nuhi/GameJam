@@ -163,3 +163,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootSpeed: 7
   damage: 20
+  mosqBullet: {fileID: 8300000, guid: fd41f7b250fb7c9459cf5e18798724c8, type: 3}

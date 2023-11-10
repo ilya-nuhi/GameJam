@@ -7,6 +7,7 @@ public class BulletMK6AMP : MonoBehaviour
 {
     [SerializeField] float shootSpeed = 10f;
     [SerializeField] int damage = 20;
+    [SerializeField] AudioClip machinegunSFX;
     Rigidbody2D myRigidBody;
     float bulletLifeTime = 4f;
     GameObject player;
@@ -18,6 +19,7 @@ public class BulletMK6AMP : MonoBehaviour
         myRigidBody = GetComponent<Rigidbody2D>();
     }
     void Start() {
+        AudioSource.PlayClipAtPoint(machinegunSFX,transform.position);
         direction = new Vector2 (MathF.Sign(transform.position.x - playerController.transform.position.x), 0);
         transform.localScale = new Vector3 ((direction.x)*transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }

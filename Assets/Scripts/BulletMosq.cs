@@ -8,9 +8,12 @@ public class BulletMosq : MonoBehaviour
 {
     [SerializeField] float shootSpeed = 10f;
     [SerializeField] int damage = 20;
+    [SerializeField] AudioClip mosqBullet;
     private Rigidbody2D myRigidBody;
     private float bulletLifeTime = 4f;
     private GameObject player;
+
+
 
     UnityEngine.Vector2 direction;
     void Awake() {
@@ -18,6 +21,7 @@ public class BulletMosq : MonoBehaviour
     }
 
     void Start() {
+        AudioSource.PlayClipAtPoint(mosqBullet ,transform.position);
         direction = -transform.right;
     }
 
@@ -42,6 +46,5 @@ public class BulletMosq : MonoBehaviour
 
     public void SetDamage(int damage){
         this.damage = damage;
-        
     }
 }

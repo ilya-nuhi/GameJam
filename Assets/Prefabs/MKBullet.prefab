@@ -163,3 +163,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootSpeed: 7
   damage: 20
+  machinegunSFX: {fileID: 8300000, guid: 32318cfbc3826e043ae47762b8b6029b, type: 3}

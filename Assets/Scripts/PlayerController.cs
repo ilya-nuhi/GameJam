@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject doggyBullet;
     [SerializeField] Transform firePosition;
     [SerializeField] RuntimeAnimatorController[] powerAnims;
+    [SerializeField] float detectRadius = 20f;
+    [SerializeField] AudioClip barkingSFX;
     public int power = 20;
     Vector2 moveInput;
 
@@ -37,6 +39,8 @@ public class PlayerController : MonoBehaviour
     Health health;
     SingletonLevel singletonLevel;
     Transform jumpRay;
+    int beforeOverlapCircle=0;
+    bool canBark=true;
 
     void Awake() {
         jumpRay = transform.Find("jumpingRay");
@@ -61,6 +65,8 @@ public class PlayerController : MonoBehaviour
         if(isDead){return;}
         Run();
         FlipSprite();
+        jumpTime -= Time.deltaTime;
+
         RaycastHit2D hitBottom = Physics2D.Raycast(jumpRay.position, Vector2.down, Mathf.Epsilon , LayerMask.GetMask("Platform"));
         if(hitBottom.collider!=null){
             isTouchingGround = true;
@@ -71,7 +77,19 @@ public class PlayerController : MonoBehaviour
             isTouchingGround = false;
             myAnimator.SetBool("isJumping", true);
         }
-        jumpTime -= Time.deltaTime;
+        int currentOverlapCircle = Physics2D.OverlapCircleAll(transform.position, detectRadius, LayerMask.GetMask("Enemy")).Length;
+        if( currentOverlapCircle > beforeOverlapCircle && canBark){
+            StartCoroutine(Bark());
+        }
+        beforeOverlapCircle = currentOverlapCircle;
+    }
+
+    IEnumerator Bark()
+    {
+        canBark = false;
+        AudioSource.PlayClipAtPoint(barkingSFX, transform.position);
+        yield return new WaitForSeconds(1);
+        canBark = true;
     }
 
     void OnMove(InputValue value){
@@ -126,7 +144,9 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             powerupCount++;
             doggyAttributes.powerupCount++;
-            AudioSource.PlayClipAtPoint(powerupAudio,transform.position);
+            if(powerupCount<5){
+                AudioSource.PlayClipAtPoint(powerupAudio,transform.position);
+            }
             canTrigger = true;
         }
         else if(other.gameObject.tag == "Cliff"){
@@ -134,6 +154,8 @@ public class PlayerController : MonoBehaviour
         }
         else if(other.gameObject.layer == LayerMask.GetMask("NextLevel")){
             // if all the powerups are collected we can pass to the next level.
+            Debug.Log(doggyAttributes.powerup);
+            Debug.Log(SceneManager.GetActiveScene().buildIndex);
             if(doggyAttributes.powerup > SceneManager.GetActiveScene().buildIndex){
                 singletonLevel.DestroyLevel();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);

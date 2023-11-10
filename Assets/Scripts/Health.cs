@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -6,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] AudioClip dyingSFX;
+    [SerializeField] AudioClip takeDamageSFX;
     public int maxHealth = 100;
     Animator myAnimator;
 
@@ -40,6 +43,17 @@ public class Health : MonoBehaviour
         if(currentHealth<=0){
             StartCoroutine(Die());
         }
+        else{
+            StartCoroutine(TakeDamage());
+        }
+    }
+
+    IEnumerator TakeDamage()
+    {
+        playerController.canTakeDamage = false;
+        AudioSource.PlayClipAtPoint(takeDamageSFX,transform.position);
+        yield return new WaitForSeconds(0.8f);
+        playerController.canTakeDamage = true;
     }
 
     public int GetHealth(){
@@ -49,6 +63,7 @@ public class Health : MonoBehaviour
     public IEnumerator Die(){
         playerController.isDead = true;
         myAnimator.SetTrigger("isDead");
+        AudioSource.PlayClipAtPoint(dyingSFX,transform.position);
         yield return new WaitForSeconds(2);
         Destroy(playerController.gameObject);
         doggyAttributes.lives--;

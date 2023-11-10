@@ -10,15 +10,16 @@ public class BOSSControll : MonoBehaviour
     [SerializeField] Transform[] gunBoss;
     [SerializeField] Vector2 touchKick = new Vector2(3f,13f);
     [SerializeField] int damage = 20;
+    AudioSource audioSource;
     Animator myAnimator;
     PlayerController playerController;
     EnemyHealth enemyHealth;
     public bool canAttack=true;
 	public bool isFlipped = false;
-
     public Vector2 direction;
 
     private void Awake() {
+        audioSource = GetComponent<AudioSource>();
         playerController = FindObjectOfType<PlayerController>();
         enemyHealth = GetComponent<EnemyHealth>();
         myAnimator = GetComponent<Animator>();
@@ -70,6 +71,7 @@ public class BOSSControll : MonoBehaviour
     IEnumerator WakeUp()
     {
         yield return new WaitForSeconds(3);
+        audioSource.Stop();
         enemyHealth.enabled = true;
         myAnimator.SetTrigger("WakeUp");
     }
