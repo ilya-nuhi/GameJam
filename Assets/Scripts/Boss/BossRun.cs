@@ -9,15 +9,18 @@ public class BossRun : StateMachineBehaviour
     Transform player;
     Rigidbody2D rb;
     BOSSControll boss;
+    EnemyHealth enemyHealth;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       player = GameObject.FindGameObjectWithTag("Doggy").transform;
-       rb = animator.GetComponent<Rigidbody2D>();
-       boss = animator.GetComponent<BOSSControll>();
+        player = GameObject.FindGameObjectWithTag("Doggy").transform;
+        rb = animator.GetComponent<Rigidbody2D>();
+        boss = animator.GetComponent<BOSSControll>();
+        enemyHealth = animator.GetComponent<EnemyHealth>();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if(enemyHealth.GetHealth()<=0){return;}
         boss.LookAtPlayer();
         Vector2 target = new Vector2(player.position.x,rb.position.y);
         Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed*Time.fixedDeltaTime);

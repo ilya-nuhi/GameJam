@@ -29,6 +29,7 @@ public class BOSSControll : MonoBehaviour
     }
 	public void LookAtPlayer()
 	{
+        if(enemyHealth.GetHealth()<=0){return;}
 		//Vector3 flipped = transform.localScale;
 		//flipped.z *= -1f;
 
@@ -47,6 +48,7 @@ public class BOSSControll : MonoBehaviour
 	}
 
     public void Attack(){
+        if(enemyHealth.GetHealth()<=0){return;}
         StartCoroutine(startAttack());
     }
 

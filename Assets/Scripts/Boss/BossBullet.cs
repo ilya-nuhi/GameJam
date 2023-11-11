@@ -7,15 +7,11 @@ public class BossBullet : MonoBehaviour
 {
     [SerializeField] float shootSpeed = 5f;
     [SerializeField] int damage = 20;
-
     [SerializeField] float rotationSpeed = 200f;
     [SerializeField] AudioClip bossBullet;
     Rigidbody2D myRigidBody;
     float bulletLifeTime = 4f;
     GameObject player;
-
-    AudioSource audioSource;
-
     int flip=1;
 
     void Awake() {
