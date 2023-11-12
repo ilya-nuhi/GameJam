@@ -74,7 +74,7 @@ public class Health : MonoBehaviour
             singleton.OnGameOver();
             singletonLevel.DestroyLevel();
             singleton = null;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
     }
 
