@@ -72,7 +72,9 @@ public class Health : MonoBehaviour
         }
         else{
             singleton.OnGameOver();
-            singletonLevel.DestroyLevel();
+            if(singletonLevel!=null){
+                singletonLevel.DestroyLevel();
+            }
             singleton = null;
             SceneManager.LoadScene(2);
         }

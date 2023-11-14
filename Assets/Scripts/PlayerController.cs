@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
             // if all the powerups are collected we can pass to the next level.
             Debug.Log(doggyAttributes.powerup);
             Debug.Log(SceneManager.GetActiveScene().buildIndex);
-            if(doggyAttributes.powerup > SceneManager.GetActiveScene().buildIndex){
+            if(doggyAttributes.powerup + 2 > SceneManager.GetActiveScene().buildIndex){
                 singletonLevel.DestroyLevel();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
             }
