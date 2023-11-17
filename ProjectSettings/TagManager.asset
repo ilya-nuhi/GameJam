@@ -74,3 +74,6 @@ TagManager:
   - name: ship
     uniqueID: 1776324307
     locked: 0
+  - name: ParticleEffects
+    uniqueID: 1376049225
+    locked: 0

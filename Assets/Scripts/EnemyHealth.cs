@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int Health;
+    [SerializeField] ParticleSystem deathEffect;
+    [SerializeField] ParticleSystem impactEffect;
     PlayerController playerController;
 
     public bool stopEnemy = false;
@@ -30,6 +32,7 @@ public class EnemyHealth : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if(!isActiveAndEnabled){return;}
         if(other.tag=="PlayerBullet"){
+            Instantiate(impactEffect, transform.position, Quaternion.identity);
             Health -= playerController.power;
             if(Health<=0){
                 StartCoroutine(DestroyEnemy());
@@ -41,6 +44,7 @@ public class EnemyHealth : MonoBehaviour
     {
         //Destroy effect
         stopEnemy = true;
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }
