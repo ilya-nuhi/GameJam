@@ -29,6 +29,7 @@ public class BOSSControll : MonoBehaviour
     }
 	public void LookAtPlayer()
 	{
+        if(player==null){return;}
         if(enemyHealth.GetHealth()<=0){return;}
 		//Vector3 flipped = transform.localScale;
 		//flipped.z *= -1f;
