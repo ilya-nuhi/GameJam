@@ -18,7 +18,9 @@ public class Story : MonoBehaviour
         storyText = GetComponent<TextMeshProUGUI>();
     }
     private void Start() {
+        storyText.text = Pages[0];
         StartCoroutine(FadeTextToFullAlpha(2f, storyText));
+
     }
     private void Update() {
         if (Input.GetMouseButtonDown(0))

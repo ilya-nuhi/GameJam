@@ -38,14 +38,12 @@ public class PlayerController : MonoBehaviour
     public bool canTakeDamage = true;
     DoggyAttributes doggyAttributes;
     Health health;
-    SingletonLevel singletonLevel;
     Transform jumpRay;
     int beforeOverlapCircle=0;
     bool canBark=true;
 
     void Awake() {
         jumpRay = transform.Find("jumpingRay");
-        singletonLevel = FindObjectOfType<SingletonLevel>();
         health = GetComponent<Health>();
         myRigidBody = GetComponent<Rigidbody2D>();
     }
@@ -156,8 +154,7 @@ public class PlayerController : MonoBehaviour
         else if(other.gameObject.layer == LayerMask.GetMask("NextLevel")){
             // if all the powerups are collected we can pass to the next level.
             if(doggyAttributes.powerup + 2 > SceneManager.GetActiveScene().buildIndex){
-                singletonLevel.DestroyLevel();
-                nextSceneAnimator.enabled = true;
+                nextSceneAnimator.SetTrigger("SceneEnd");
             }
         }
     }

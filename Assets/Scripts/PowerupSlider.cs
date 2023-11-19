@@ -48,10 +48,11 @@ public class PowerupSlider : MonoBehaviour
  
     IEnumerator Powerup()
     {
-        Debug.Log("girdi");
         audioSource.Play();
         playerController.canTakeDamage = false;
         poweringUp = true;
+        playerController.powerupCount = 0;
+        doggyAttributes.powerupCount = 0;
         doggyAttributes.powerup++;
         playerRB.velocity = Vector3.zero;
         playerController.stopMovement = true;
@@ -72,8 +73,6 @@ public class PowerupSlider : MonoBehaviour
         if(currentPowerup == toPowerUp.Count()){
             playerController.stopMovement = false;
         }
-        playerController.powerupCount = 0;
-        doggyAttributes.powerupCount = 0;
         yield return new WaitForSeconds(2);
         onUseIcon.sprite = Icons[currentPowerup];
         playerController.stopMovement = false;

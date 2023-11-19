@@ -37,6 +37,7 @@ public class MosquitoControl : MonoBehaviour
 
     void OnSceneChanged(Scene arg0, Scene arg1)
     {
+        if(trackingObj == null){return;}
         playerController = FindObjectOfType<PlayerController>();
         trackingObj = GameObject.Find("Doggy").transform;
         aIDestinationSetter.target = trackingObj;

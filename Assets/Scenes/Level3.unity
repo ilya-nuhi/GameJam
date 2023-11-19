@@ -2081,7 +2081,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.027349, y: -0.111189485, z: -10}
+  m_LocalPosition: {x: -9.120253, y: -0.11135352, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4059,6 +4059,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e30a4b5d47e40404bb40b1e92f750ff7, type: 3}
+--- !u!95 &1024614437 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5221335515634609868, guid: e30a4b5d47e40404bb40b1e92f750ff7, type: 3}
+  m_PrefabInstance: {fileID: 1024614436}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1034263934
 GameObject:
   m_ObjectHideFlags: 3
@@ -8024,6 +8029,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doggy
       objectReference: {fileID: 0}
+    - target: {fileID: 5543513276402485534, guid: b7e577ef843639742915c1de5a19c985, type: 3}
+      propertyPath: nextSceneAnimator
+      value: 
+      objectReference: {fileID: 1024614437}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -13,10 +13,12 @@ public class GetInShip : MonoBehaviour
     [SerializeField] AudioClip rocketEngineSFX;
     [SerializeField] Animator fadeOut;
     Singleton singleton;
+    SingletonLevel singletonLevel;
     Rigidbody2D shipRB;
     AudioSource audioSource;
     bool launched = false;
     private void Awake() {
+        singletonLevel = FindObjectOfType<SingletonLevel>();
         singleton = FindObjectOfType<Singleton>();
         audioSource = GetComponent<AudioSource>();
         shipRB = GetComponent<Rigidbody2D>();
@@ -44,6 +46,9 @@ public class GetInShip : MonoBehaviour
         yield return new WaitForSeconds(6);
         fadeOut.enabled = true;
         yield return new WaitForSeconds(1.5f);
+        if(singletonLevel!=null){
+            Destroy(singletonLevel);
+        }
         singleton.OnGameOver();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
         
