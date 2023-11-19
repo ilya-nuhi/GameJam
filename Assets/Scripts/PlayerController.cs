@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] RuntimeAnimatorController[] powerAnims;
     [SerializeField] float detectRadius = 20f;
     [SerializeField] AudioClip barkingSFX;
+    [SerializeField] Animator nextSceneAnimator;
     public int power = 20;
     Vector2 moveInput;
 
@@ -156,7 +157,7 @@ public class PlayerController : MonoBehaviour
             // if all the powerups are collected we can pass to the next level.
             if(doggyAttributes.powerup + 2 > SceneManager.GetActiveScene().buildIndex){
                 singletonLevel.DestroyLevel();
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+                nextSceneAnimator.enabled = true;
             }
         }
     }

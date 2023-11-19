@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GetInShip : MonoBehaviour
 {
@@ -10,10 +11,13 @@ public class GetInShip : MonoBehaviour
     [SerializeField] float velocity=0.3f;
     [SerializeField] GameObject rocketFlames;
     [SerializeField] AudioClip rocketEngineSFX;
+    [SerializeField] Animator fadeOut;
+    Singleton singleton;
     Rigidbody2D shipRB;
     AudioSource audioSource;
     bool launched = false;
     private void Awake() {
+        singleton = FindObjectOfType<Singleton>();
         audioSource = GetComponent<AudioSource>();
         shipRB = GetComponent<Rigidbody2D>();
     }
@@ -37,6 +41,11 @@ public class GetInShip : MonoBehaviour
         rocketFlames.SetActive(true);
         audioSource.PlayOneShot(rocketEngineSFX);
         launched = true;
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(6);
+        fadeOut.enabled = true;
+        yield return new WaitForSeconds(1.5f);
+        singleton.OnGameOver();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        
     }
 }

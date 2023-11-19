@@ -5,20 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    Health health;
-    void Awake() {
-        health = FindObjectOfType<Health>();
-    }
-    void Update() {
-        if(Input.GetKeyDown(KeyCode.R)){
-            ResetScene();
-        }
-    }
-    void ResetScene()
-    {
-        StartCoroutine(health.Die());
-    }
     public void NextScene(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
+
+    public void PlayAgain(){
+        SceneManager.LoadScene("Level1");
+    }
+
 }
