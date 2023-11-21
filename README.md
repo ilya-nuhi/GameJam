@@ -4,5 +4,8 @@ It's an adventure game that challanges player to finish levels and gather poweru
 All the assets are created by my 2 teammates in the gamejam.  
 And i design all the game mechanics and coding.  
 
-# In Game ScreenShots
-![alt text](https://github.com/ilya-nuhi/GameJam/blob/main/buddy_ingame.png?raw=true) 
+# In-Game ScreenShots
+![alt text](https://github.com/ilya-nuhi/GameJam/blob/main/buddy_ingame.png?raw=true)  
+You can play the game via below links:  
+https://ilya-nuhi.itch.io/buddy  
+https://sharemygame.com/@ilya_nuhi/buddy
